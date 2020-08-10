@@ -1,0 +1,22 @@
+sudo: false
+addons:
+  chrome: stable
+language: node_js
+matrix:
+  include:
+    - node_js: "14"
+    - node_js: "12"
+    - node_js: "10"
+      script:
+        # Install latest deps and the version of node-red that is support by the
+        # node-red-node-test-help frameworker. We do this here rather than in the
+        # package.json.
+        - yarn install
+        - yarn add node-red@0.20.0
+        # run tests!
+        - yarn test
+
+        # run examples!
+        - yarn run examples
+    - node_js: "8"
+
